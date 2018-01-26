@@ -1,12 +1,10 @@
-package io.dnsdb.sdk;
+package io.dnsdb.api;
 
 /**
- * The class <code></code>
- *
- * @author DnsDB.io
+ * @author dnsdb team
  * @version 1.0
  */
-public class DnsRecord {
+public class DNSRecord {
   private String host;
   private String type;
   private String value;
@@ -33,5 +31,14 @@ public class DnsRecord {
 
   public void setValue(String value) {
     this.value = value;
+  }
+
+  @Override
+  public String toString() {
+    return "DNSRecord{" +
+            "host='" + host + '\'' +
+            ", type='" + type + '\'' +
+            ", value='" + value + '\'' +
+            '}';
   }
 }
