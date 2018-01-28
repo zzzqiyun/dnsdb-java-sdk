@@ -50,7 +50,6 @@ public class DefaultAPIClient implements APIClient {
   }
 
   private APIResponse doGet(String uri, Class<? extends APIResponse> responseClass) throws IOException {
-    System.out.println(uri);
     HttpGet httpGet = new HttpGet(uri);
     httpGet.setHeader("API-ID", this.apiId);
     httpGet.setHeader("API-Key", this.apiKey);
