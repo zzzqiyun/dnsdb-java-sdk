@@ -14,6 +14,10 @@ public class Query {
   private String valueIp;
   private String email;
 
+  public boolean isEmpty() {
+    return host == null && domain == null && type == null && ip == null && valueDomain == null && valueHost == null && valueIp == null && email == null;
+  }
+
   public String getHost() {
     return host;
   }

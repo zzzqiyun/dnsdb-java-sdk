@@ -9,18 +9,19 @@ import io.dnsdb.api.exceptions.APIException;
  *
  * @author dnsdb team
  */
-public abstract class APIResponse {
+public class APIResponse {
   @JsonProperty("error_code")
-  private int errorCode;
+  private Integer errorCode;
   @JsonProperty("error_msg")
   private String errorMsg;
+  private String doc;
 
 
-  public int getErrorCode() {
+  public Integer getErrorCode() {
     return errorCode;
   }
 
-  public APIResponse setErrorCode(int errorCode) {
+  public APIResponse setErrorCode(Integer errorCode) {
     this.errorCode = errorCode;
     return this;
   }
@@ -34,12 +35,21 @@ public abstract class APIResponse {
     return this;
   }
 
+  public String getDoc() {
+    return doc;
+  }
+
+  public APIResponse setDoc(String doc) {
+    this.doc = doc;
+    return this;
+  }
+
   public boolean hasError() {
-    return errorCode != 0;
+    return errorCode != null;
   }
 
   public void checkError() throws APIException {
-    if (errorCode != 0) {
+    if (errorCode != null) {
       throw new APIException(errorCode, errorMsg);
     }
   }

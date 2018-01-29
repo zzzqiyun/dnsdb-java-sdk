@@ -5,8 +5,8 @@ import java.io.IOException;
 import io.dnsdb.api.exceptions.APIException;
 import io.dnsdb.api.responses.ScanResponse;
 
-import static io.dnsdb.api.APIManager.API_VERSION;
 import static io.dnsdb.api.APIManager.API_BASE_URL;
+import static io.dnsdb.api.APIManager.API_VERSION;
 
 /**
  * @author dnsdb team

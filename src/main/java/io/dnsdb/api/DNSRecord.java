@@ -9,28 +9,40 @@ public class DNSRecord {
   private String type;
   private String value;
 
+  public DNSRecord() {
+  }
+
+  public DNSRecord(String host, String type, String value) {
+    this.host = host;
+    this.type = type;
+    this.value = value;
+  }
+
   public String getHost() {
     return host;
   }
 
-  public void setHost(String host) {
+  public DNSRecord setHost(String host) {
     this.host = host;
+    return this;
   }
 
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public DNSRecord setType(String type) {
     this.type = type;
+    return this;
   }
 
   public String getValue() {
     return value;
   }
 
-  public void setValue(String value) {
+  public DNSRecord setValue(String value) {
     this.value = value;
+    return this;
   }
 
   @Override

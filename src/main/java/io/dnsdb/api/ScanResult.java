@@ -9,6 +9,8 @@ import java.util.List;
 import io.dnsdb.api.exceptions.IteratorException;
 import io.dnsdb.api.responses.ScanResponse;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * @author dnsdb team
  * @version 1.0
@@ -22,8 +24,8 @@ public class ScanResult implements Iterable<DNSRecord> {
   private boolean alreadyIterated = false;
 
   public ScanResult(ScanResponse scanResponse, APIClient client) {
-    this.scanResponse = scanResponse;
-    this.client = client;
+    this.scanResponse = checkNotNull(scanResponse);
+    this.client = checkNotNull(client);
     this.remainingRequests = scanResponse.getRemainingRequests();
     this.total = scanResponse.getTotal();
     this.requestedTimes = 1;

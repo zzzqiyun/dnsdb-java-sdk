@@ -1,5 +1,6 @@
 package io.dnsdb.api.responses;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -16,8 +17,10 @@ public class APIUserResponse extends APIResponse {
   @JsonProperty("remaining_requests")
   private int remainingRequests;
   @JsonProperty("creation_time")
+  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
   private Date creationTime;
   @JsonProperty("expiration_time")
+  @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
   private Date expirationTime;
 
   public String getApiId() {

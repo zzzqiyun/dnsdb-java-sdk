@@ -3,6 +3,8 @@ package io.dnsdb.api;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * @author dnsdb team
  * @version 1.0
@@ -13,7 +15,7 @@ public class SearchResult implements Iterable<DNSRecord> {
   private final long total;
 
   public SearchResult(List<DNSRecord> records, int remainingRequests, long total) {
-    this.records = records;
+    this.records = checkNotNull(records);
     this.remainingRequests = remainingRequests;
     this.total = total;
   }

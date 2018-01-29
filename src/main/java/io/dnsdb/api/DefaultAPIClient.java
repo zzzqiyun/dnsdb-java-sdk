@@ -1,5 +1,7 @@
 package io.dnsdb.api;
 
+import com.google.common.base.Preconditions;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.http.HttpEntity;
@@ -21,6 +23,8 @@ import io.dnsdb.api.responses.APIUserResponse;
 import io.dnsdb.api.responses.ScanResponse;
 import io.dnsdb.api.responses.SearchResponse;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Created on 2018/1/24.
  *
@@ -30,19 +34,19 @@ public class DefaultAPIClient implements APIClient {
   private CloseableHttpClient httpClient;
   private String apiId;
   private String apiKey;
-  private ObjectMapper objectMapper = new ObjectMapper();
+  private final ObjectMapper objectMapper = new ObjectMapper();
   private RequestConfig requestConfig;
 
   public DefaultAPIClient(String apiId, String apiKey, RequestConfig requestConfig) {
-    this.apiId = apiId;
-    this.apiKey = apiKey;
+    this.apiId = checkNotNull(apiId);
+    this.apiKey = checkNotNull(apiKey);
     this.httpClient = HttpClients.createDefault();
     this.requestConfig = requestConfig;
   }
 
   public DefaultAPIClient(String apiId, String apiKey) {
-    this.apiId = apiId;
-    this.apiKey = apiKey;
+    this.apiId = checkNotNull(apiId);
+    this.apiKey = checkNotNull(apiKey);
     this.httpClient = HttpClients.createDefault();
     this.requestConfig = RequestConfig.custom()
             .setConnectTimeout(5000).setConnectionRequestTimeout(1000)
@@ -73,6 +77,7 @@ public class DefaultAPIClient implements APIClient {
 
   @Override
   public SearchResult search(Query query, int page, int pageSize) throws APIException, IOException {
+    Preconditions.checkNotNull(query);
     try {
       URI uri = new URIBuilder().setParameter("domain", query.getDomain())
               .setParameter("type", query.getType())
@@ -141,6 +146,42 @@ public class DefaultAPIClient implements APIClient {
       throw new APIException(response.getErrorCode(), response.getErrorMsg());
     }
     return new APIUser(response.getApiId(), response.getUser(), response.getRemainingRequests(), response.getCreationTime(), response.getExpirationTime());
+  }
+
+  public CloseableHttpClient getHttpClient() {
+    return httpClient;
+  }
+
+  public DefaultAPIClient setHttpClient(CloseableHttpClient httpClient) {
+    this.httpClient = httpClient;
+    return this;
+  }
+
+  public String getApiId() {
+    return apiId;
+  }
+
+  public DefaultAPIClient setApiId(String apiId) {
+    this.apiId = apiId;
+    return this;
+  }
+
+  public String getApiKey() {
+    return apiKey;
+  }
+
+  public DefaultAPIClient setApiKey(String apiKey) {
+    this.apiKey = apiKey;
+    return this;
+  }
+
+  public RequestConfig getRequestConfig() {
+    return requestConfig;
+  }
+
+  public DefaultAPIClient setRequestConfig(RequestConfig requestConfig) {
+    this.requestConfig = requestConfig;
+    return this;
   }
 }
 
