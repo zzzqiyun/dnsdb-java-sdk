@@ -6,6 +6,8 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
+ * <code>SearchResult</code>表示一次search结果。
+ *
  * @author dnsdb team
  * @version 1.0
  */

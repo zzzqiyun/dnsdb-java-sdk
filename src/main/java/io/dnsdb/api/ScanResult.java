@@ -12,6 +12,8 @@ import io.dnsdb.api.responses.ScanResponse;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
+ * <code>ScanResult</code>类表示一次scan结果。该类的实例是一个可叠戴对象。通过迭代获取所有的查询结果。
+ *
  * @author dnsdb team
  * @version 1.0
  */
@@ -80,7 +82,7 @@ public class ScanResult implements Iterable<DNSRecord> {
     public DNSRecord next() {
       if (currentRecords.size() == 0) {
         try {
-          ScanResponse response = client.scanNext(scanId);
+          ScanResponse response = client.nextScan(scanId);
           requestedTimes += 1;
           total = response.getTotal();
           remainingRequests = response.getRemainingRequests();

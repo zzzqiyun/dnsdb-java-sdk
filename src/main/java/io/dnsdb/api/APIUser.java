@@ -3,7 +3,7 @@ package io.dnsdb.api;
 import java.util.Date;
 
 /**
- * Created on 2018/1/24.
+ * <code>APIUser</code>表示一个API User
  *
  * @author dnsdb team
  */

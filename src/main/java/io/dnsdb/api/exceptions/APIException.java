@@ -1,6 +1,8 @@
 package io.dnsdb.api.exceptions;
 
 /**
+ * <code>APIException</code>表示API级别的异常。
+ *
  * @author dnsdb team
  * @version 1.0
  */

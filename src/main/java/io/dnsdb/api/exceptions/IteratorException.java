@@ -1,7 +1,7 @@
 package io.dnsdb.api.exceptions;
 
 /**
- * Created on 2018/1/26.
+ * <code>IteratorException</code>表示迭代异常。
  *
  * @author dnsdb team
  */

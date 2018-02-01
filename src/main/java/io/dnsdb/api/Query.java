@@ -1,6 +1,8 @@
 package io.dnsdb.api;
 
 /**
+ * <code>Query</code>类表示DNS查询条件。
+ *
  * @author dnsdb team
  * @version 1.0
  */

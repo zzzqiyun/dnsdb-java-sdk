@@ -26,9 +26,10 @@ import io.dnsdb.api.responses.SearchResponse;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Created on 2018/1/24.
+ * <code>DefaultAPIClient</code>实现了{@link APIClient}接口。
  *
  * @author dnsdb team
+ * @see io.dnsdb.api.APIClient
  */
 public class DefaultAPIClient implements APIClient {
   private CloseableHttpClient httpClient;
@@ -90,7 +91,7 @@ public class DefaultAPIClient implements APIClient {
               .setParameter("page", page + "")
               .setParameter("size", pageSize + "")
               .build();
-      SearchResponse response = (SearchResponse) doGet(getUrl("search") + uri.toString(), SearchResponse.class);
+      SearchResponse response = (SearchResponse) doGet(getUrl("dns/search") + uri.toString(), SearchResponse.class);
       if (response.hasError()) {
         throw new APIException(response.getErrorCode(), response.getErrorMsg());
       }
@@ -114,17 +115,17 @@ public class DefaultAPIClient implements APIClient {
               .setParameter("email", query.getEmail())
               .setParameter("size", perSize + "")
               .build();
-      return (ScanResponse) doGet(getUrl("scan/create") + uri.toString(), ScanResponse.class);
+      return (ScanResponse) doGet(getUrl("dns/scan/create") + uri.toString(), ScanResponse.class);
     } catch (URISyntaxException ignored) {
       return null;
     }
   }
 
   @Override
-  public ScanResponse scanNext(String scanId) throws IOException {
+  public ScanResponse nextScan(String scanId) throws IOException {
     try {
       URI uri = new URIBuilder().setParameter("scan_id", scanId).build();
-      return (ScanResponse) doGet(getUrl("scan/next" + uri.toString()), ScanResponse.class);
+      return (ScanResponse) doGet(getUrl("dns/scan/next" + uri.toString()), ScanResponse.class);
     } catch (URISyntaxException ignored) {
     }
     return null;

@@ -1,6 +1,8 @@
 package io.dnsdb.api;
 
 /**
+ * <code>DNSRecord</code>表示一条DNS记录。
+ *
  * @author dnsdb team
  * @version 1.0
  */

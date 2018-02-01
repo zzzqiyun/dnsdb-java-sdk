@@ -50,11 +50,11 @@ public class APITestServer extends NanoHTTPD {
     switch (path) {
       case "/v1/api_user":
         return newJsonResponse(apiUserResponses.poll());
-      case "/v1/search":
+      case "/v1/dns/search":
         return newJsonResponse(searchResponses.poll());
-      case "/v1/scan/create":
+      case "/v1/dns/scan/create":
         return newJsonResponse(scanCreateResponses.poll());
-      case "/v1/scan/next":
+      case "/v1/dns/scan/next":
         return newJsonResponse(scanNextResponses.poll());
     }
 
